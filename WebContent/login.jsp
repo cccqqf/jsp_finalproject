@@ -6,8 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
 <link href="./css/login.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="http://sandbox.runjs.cn/uploads/rs/55/sjckzedf/lanrenzhijia.css">
+
 <script type="text/javascript"
 	src="http://sandbox.runjs.cn/uploads/rs/55/sjckzedf/jquery-1.8.0.min.js"></script>
 <script>
@@ -21,13 +20,24 @@ jQuery(document).ready(function($) {
 		}
 		
 	})
+	
 	$('.theme-poptit .close').click(function(){
 		$('.theme-popover-mask').fadeOut(100);
 		$('.theme-popover').slideUp(200);
 		$('.login_box').css({opacity:1});
 	})
-
-})
+	
+	$("#regusername").blur(function(){
+		$.ajax({
+			type:'post',
+			url:'isregister',
+			data:'regusername='+$("#regusername").val(),
+			success:function(msg){
+                document.getElementById("regmessage").innerHTML=msg;    
+            }
+	});
+	});
+});
 </script>
 </head>
 <body>
@@ -67,13 +77,15 @@ jQuery(document).ready(function($) {
 	<!-- 注册 -->
 		<div class="theme-popover">
 			<div class="theme-poptit">
-				<a href="javascript:;" title="关闭" class="close">×</a>
-				<h2>注册</h2>
+				<a  style="float:right;font-size:20px;"  title="关闭" class="close">×</a>
+				<h2 style="float:center">注册</h2>
 			</div>
 			<div class=" dform" >
-				<form class="theme-signin" action="registerAction" method="post">
-					<input name="regname" type="text"  placeholder="请输入姓名" id="regname"> 
-					<input name="regusername" type="text"  placeholder="请输入用户名"id="regusername"> 
+				<p id="regmessage" style="color:red"></p>
+				<br/>
+				<form action="registerAction" method="post">
+					<input name="regname" type="text"  placeholder="请输入姓名" id="regname" autocomplete="off"/> 
+					<input name="regusername" type="text"  placeholder="请输入用户名"id="regusername"  autocomplete="off"/> 
 					<input name="regpassword" type="password" id="regpassword" placeholder="请输入注册密码"/>
 
 					<input  type="submit" name="regsubmit" value=" 注     册 " />

@@ -13,16 +13,16 @@ import bean.User;
 import dao.UserDao;
 
 /**
- * Servlet implementation class registerAction
+ * Servlet implementation class isregister
  */
-@WebServlet("/registerAction")
-public class registerAction extends HttpServlet {
+@WebServlet("/isregister")
+public class isregister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registerAction() {
+    public isregister() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +33,7 @@ public class registerAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -40,28 +41,23 @@ public class registerAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
 		
-		PrintWriter out = response.getWriter();
-		
-		String name=request.getParameter("regname");
 		String username=request.getParameter("regusername");
-		String password=request.getParameter("regpassword");
-		
-		UserDao userDao=new UserDao();
-		User isregister=userDao.query(username);
-		if(isregister!=null) {
-			out.println("<script>alert('用户名已存在');location='login.jsp';</script>");
-		}else {
-			User user=new User(name,username,password);
-			boolean result = userDao.create(user);
-			if(result==true) {
-				out.println("<script>alert('注册成功');location='login.jsp';</script>");
+		if(username!="") {
+			UserDao userDao=new UserDao();
+			User isregister=userDao.query(username);
+			if(isregister!=null) {
+				out.print("用户名已存在");
+			}else {
+				out.print("ok");
 			}
 		}
+		out.flush();
+		out.close();
 	}
 
 }
