@@ -10,15 +10,11 @@
 <script type="text/javascript"
 	src="http://sandbox.runjs.cn/uploads/rs/55/sjckzedf/jquery-1.8.0.min.js"></script>
 <script>
-jQuery(document).ready(function($) {
-	$("a").click(function(){
-		var id=$(this).attr("id");
-		if(id=="register"){
-			$('.theme-popover-mask').fadeIn(100);
-			$('.theme-popover').slideDown(200);
-			$('.login_box').css({opacity:0.5});
-		}
-		
+jQuery(document).ready(function() {
+	$("#register").click(function(){
+		$('.theme-popover-mask').fadeIn(100);
+		$('.theme-popover').slideDown(200);
+			$('.login_box').css({opacity:0.5});		
 	})
 	
 	$('.theme-poptit .close').click(function(){
@@ -54,15 +50,7 @@ jQuery(document).ready(function($) {
 				<p>后台管理系统</p>
 				
 			</div>
-			
-			<%
-				String str=(String)request.getAttribute("loginmessage");
-				if(str!=null){
-			%>
-			<p style="color:red">用户名或密码错误</p><br/>
-			<%
-				}
-			%>
+			<p style="color:red">${loginmessage}</p><br/>
 			
 			<form method="post" action="loginAction">
 				<input name="username" type="text" id="username " placeholder="用户名"> 

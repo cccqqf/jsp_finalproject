@@ -41,7 +41,7 @@ public class UserDao {
 			pstmt.setString(1, username);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				user=new User(rs.getString(2),rs.getString(3),rs.getString(4));
+				user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

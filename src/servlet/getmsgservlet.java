@@ -1,26 +1,29 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Hashtable;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.User;
-import dao.UserDao;
+import bean.Message;
 
 /**
- * Servlet implementation class loginAction
+ * Servlet implementation class getmsgservlet
  */
-@WebServlet("/loginAction")
-public class loginAction extends HttpServlet {
+@WebServlet("/getmsgservlet")
+public class getmsgservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    public static Hashtable<String,Message> waitList=new Hashtable<String,Message>();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loginAction() {
+    public getmsgservlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +33,10 @@ public class loginAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		doPost(request,response);
+		
 	}
 
 	/**
@@ -39,24 +45,28 @@ public class loginAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
 		
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		
-		UserDao userDao=new UserDao();
-		User user=userDao.query(username);
-		if(user!=null&&user.getPassword().equals(password)) {
-			 request.getSession().setAttribute("username",user.getUsername());
-			 request.getSession().setAttribute("name", user.getName());
-			 request.getRequestDispatcher("loginsuccess.jsp").forward(request, response);
-		}else {
-			request.setAttribute("loginmessage", "”√ªß√˚ªÚ√‹¬Î¥ÌŒÛ");
-			//response.sendRedirect("login.jsp");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+		Message msg=new Message();
+		String name=(String)request.getSession().getAttribute("name");
+		//String name="¥ﬁ∆Ê∑Â";
+		waitList.put(name, msg);
+		synchronized(msg) {
+			try {
+				msg.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		out.print(msg.getName()+":"+msg.getSay()+"<br/>");
+		
+		out.flush();
+		out.close();
 	}
 
 }

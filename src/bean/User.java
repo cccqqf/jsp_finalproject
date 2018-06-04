@@ -4,10 +4,23 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	private String id;
 	
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public User() {
 		super();
+	}
+	public User(String id,String name,String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.id=id;
 	}
 	public User(String name,String username, String password) {
 		super();
