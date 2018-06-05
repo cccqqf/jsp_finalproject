@@ -52,7 +52,7 @@ public class sendmsg extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		//List<String> messages=new ArrayList<String>();
-		String name=request.getParameter("name");
+		String name=(String)request.getSession().getAttribute("name");
 		String chatmsg=request.getParameter("msg");
 		/*if((ArrayList<String>) this.getServletContext().getAttribute("messages")!=null) {
 			messages=(ArrayList<String>) this.getServletContext().getAttribute("messages");
