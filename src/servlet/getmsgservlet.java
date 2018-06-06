@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Hashtable;
+import java.util.Queue;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Message;
+import dao.HismsgDao;
 
 /**
  * Servlet implementation class getmsgservlet
@@ -52,7 +54,7 @@ public class getmsgservlet extends HttpServlet {
 		
 		Message msg=new Message();
 		String name=(String)request.getSession().getAttribute("name");
-		//String name="´ÞÆæ·å";
+		
 		waitList.put(name, msg);
 		synchronized(msg) {
 			try {
@@ -63,8 +65,11 @@ public class getmsgservlet extends HttpServlet {
 			}
 		}
 		
-		out.print(msg.getName()+":"+msg.getSay()+"<br/>");
-		
+		if(msg.getName()==name) {
+			out.print("<div style=\"text-align:right\"><div id=\"box_right\">"+msg.getSay()+"</div>"+msg.getName()+"</div>");
+		}else {
+			out.print("<div>"+msg.getName()+"<div id=\"box_left\">"+msg.getSay()+"</div></div>");
+		}
 		out.flush();
 		out.close();
 	}

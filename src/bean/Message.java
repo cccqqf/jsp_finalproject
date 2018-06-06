@@ -1,27 +1,27 @@
 package bean;
 
 public class Message {
-	private String id;
+	private String username;
 	private String name;
 	private String say;
-	public Message(String id,String name,String say) {
+	public Message(String username,String name,String say) {
 		
 		this.name=name;
 		this.say=say;
-		this.id=id;
+		this.username=username;
 	}
 	public Message() {
 		super();
 	}
-	public Message(String name,String say) {
-		this.name=name;
+	public Message(String username,String say) {
+		this.username=username;
 		this.say=say;
 	}
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String id) {
+		this.username = id;
 	}
 	public String getName() {
 		return name;

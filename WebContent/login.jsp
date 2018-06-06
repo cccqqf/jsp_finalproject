@@ -23,7 +23,6 @@
 				<a href="#"><img src="images/login_logo.png" /></a>
 			</div>
 			<div class="login_name">
-				<p>后台管理系统</p>
 				
 			</div>
 			<p style="color:red">${loginmessage}</p><br/>
