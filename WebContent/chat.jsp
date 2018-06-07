@@ -17,28 +17,28 @@
 	href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
 </head>
-<body id="body" onload="connection();loadhis();" >
+<body id="body" onload="connection();loadhis();" onunload="unconnection();">
 	<div class="bg">
 		<div class="main_div">
-
+			
 			<!-- 先写这么多功能，万一用到了呢 -->
 			<header class="div_header"> <span
 				class="button-dropdown button-dropdown-primary"
 				data-buttons="dropdown"
 				style="float: left; opacity: 0.9; z-index: 1">
 				<button class="button button-primary button-large"
-					style="border-radius: 15px 0px 0px 0px;">
-					<i class="fa fa-bars"></i> 功能就是多
+					style="border-radius: 15px 0px 0px 0px;" >
+					 功能就是多
 				</button>
 				<ul class="button-dropdown-list is-below">
-					<li><a href=""><i class="fa fa-heart-o"></i> Option Link 1</a></li>
+					<li><a id="function1"> 在线人数</a></li>
 					<li><a href="">Option Link 2</a></li>
-					<li class="button-dropdown-divider"><a href="">Option Link
-							3</a></li>
+					<li class="button-dropdown-divider"><a href="">Option Link 3</a></li>
 				</ul>
-			</span> </header>
-
-
+			</span> 
+			</header>
+				
+			
 			<div id="showmsg">
 
 			</div>
@@ -51,8 +51,15 @@
 					style="float: right">发送</button>
 			</div>
 			</footer>
-
-		</div>
+	<div class="theme-popover">
+			<div class="theme-poptit">
+				<a  style="float:right;font-size:30px;"  title="关闭" class="close">×</a>
+				<h2 >功能</h2>
+			</div>
+	<div id="main_function">
+		<%@include file="onlinenumbers.jsp" %>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

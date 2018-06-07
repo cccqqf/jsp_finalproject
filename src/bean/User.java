@@ -5,6 +5,7 @@ public class User {
 	private String password;
 	private String name;
 	private String id;
+	private String sex;
 	
 	public String getId() {
 		return id;
@@ -15,18 +16,26 @@ public class User {
 	public User() {
 		super();
 	}
-	public User(String id,String name,String username, String password) {
+	public User(String name,String username,String password) {
 		super();
+		this.username=username;
+		this.name=name;
+		this.password=password;
+	}
+	public User(String name,String username, String password,String sex) {
+		super();
+		this.sex=sex;
+		this.username = username;
+		this.password = password;
+		this.name = name;
+	}
+	public User(String id,String name,String username, String password,String sex) {
+		super();
+		this.sex=sex;
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.id=id;
-	}
-	public User(String name,String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.name = name;
 	}
 	public String getUsername() {
 		return username;
@@ -45,6 +54,12 @@ public class User {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	
 	

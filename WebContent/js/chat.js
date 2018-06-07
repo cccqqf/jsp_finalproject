@@ -1,17 +1,25 @@
 jQuery(document).ready(function() {
-			$("#send").click(function(){
-				if(document.getElementById("msg").value!=""){
-					$.ajax({
-					type:'post',
-					url:'sendmsg',
-					data:'msg='+$("#msg").val(),
-					success:function(msg){
-						document.getElementById("msg").value="";
-					}
-					})
+		$("#send").click(function(){
+			if(document.getElementById("msg").value!=""){
+				$.ajax({
+				type:'post',
+				url:'sendmsg',
+				data:'msg='+$("#msg").val(),
+				success:function(msg){
+					document.getElementById("msg").value="";
 				}
-			})
+				})
+			}
 		})
+		
+		$("#function1").click(function(){
+			$('.theme-popover').slideDown(200);
+		})
+	
+		$('.theme-poptit .close').click(function(){
+			$('.theme-popover').slideUp(200);
+		})
+})
 		
 		
 		
@@ -40,3 +48,15 @@ function loadhis(){
 		}
 	})
 }
+
+
+function unconnection(){  
+	$.ajax({
+		type:'post',
+		url:'unload',
+		success:function(){
+			
+		}
+	})
+}  
+

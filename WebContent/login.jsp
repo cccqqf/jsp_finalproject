@@ -22,12 +22,10 @@
 			<div class="login_logo">
 				<a href="#"><img src="images/login_logo.png" /></a>
 			</div>
-			<div class="login_name">
-				
-			</div>
+			
 			<p style="color:red">${loginmessage}</p><br/>
 			
-			<form method="post" action="loginAction">
+			<form method="post" action="loginAction" style="margin-top:50px">
 				<input name="username" type="text" id="username " placeholder="用户名"> 
 				<input name="password" type="password" id="password"  placeholder="密码"/>
 				<input value="登录" style="width: 100%;" type="submit"> <br />
@@ -50,7 +48,11 @@
 					<input name="regname" type="text"  placeholder="请输入姓名" id="regname" autocomplete="off"/> 
 					<input name="regusername" type="text"  placeholder="请输入用户名"id="regusername"  autocomplete="off"/> 
 					<input name="regpassword" type="password" id="regpassword" placeholder="请输入注册密码"/>
-
+					<select name="sex" id="sex">
+						<option value="choose">请选择性别</option>
+						<option value="male">男</option>
+						<option value="female">女</option>
+					</select>
 					<input  type="submit" name="regsubmit" value=" 注     册 " />
 				</form>
 			</div>

@@ -51,6 +51,7 @@ public class loginAction extends HttpServlet {
 		if(user!=null&&user.getPassword().equals(password)) {
 			 request.getSession().setAttribute("username",user.getUsername());
 			 request.getSession().setAttribute("name", user.getName());
+			 request.getSession().setAttribute("sex", user.getSex());
 			 request.getRequestDispatcher("chat.jsp").forward(request, response);
 		}else {
 			request.setAttribute("loginmessage", "用户名或密码错误");

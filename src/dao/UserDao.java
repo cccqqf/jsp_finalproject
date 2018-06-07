@@ -13,13 +13,14 @@ public class UserDao {
 	public boolean create(User user) {
 		Connection conn=DButil.getConnection();
 		PreparedStatement pstmt =null;
-		String sql="INSERT INTO userinfo (name,username,password) VALUES(?,?,?)";
+		String sql="INSERT INTO userinfo (name,username,password,sex) VALUES(?,?,?,?)";
 		int result = 0;
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2,user.getUsername());
 			pstmt.setString(3, user.getPassword());
+			pstmt.setString(4, user.getSex());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -41,7 +42,7 @@ public class UserDao {
 			pstmt.setString(1, username);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
