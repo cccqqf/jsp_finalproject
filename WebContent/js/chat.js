@@ -14,6 +14,7 @@ jQuery(document).ready(function() {
 		
 		$("#function1").click(function(){
 			$('.theme-popover').slideDown(200);
+			$("#main_function").load("onlinenumber.jsp");
 		})
 	
 		$('.theme-poptit .close').click(function(){

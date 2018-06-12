@@ -8,7 +8,7 @@
 <link href="./css/login.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript"
-	src="http://sandbox.runjs.cn/uploads/rs/55/sjckzedf/jquery-1.8.0.min.js"></script>
+	src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
 <script  src="./js/login.js">
 </script>
 </head>
