@@ -18,7 +18,7 @@
 		}
 	%>
 	<div id="container" style="color: #fff"></div>
-	男生在线人数：<%=application.getAttribute("maleCount") %><br /> 女生在线人数:<%=application.getAttribute("femaleCount") %>
+	
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script>
 

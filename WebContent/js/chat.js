@@ -20,6 +20,8 @@ jQuery(document).ready(function() {
 		$('.theme-poptit .close').click(function(){
 			$('.theme-popover').slideUp(200);
 		})
+		
+		
 })
 		
 		

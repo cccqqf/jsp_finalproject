@@ -21,31 +21,28 @@
 	href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
 </head>
-<body id="body" onload="connection();loadhis();" onunload="unconnection();">
+<body id="body" onload="connection();loadhis();"
+	onunload="unconnection();">
 	<div class="bg">
 		<div class="main_div">
-			
+
 			<!-- 先写这么多功能，万一用到了呢 -->
 			<header class="div_header"> <span
 				class="button-dropdown button-dropdown-primary"
 				data-buttons="dropdown"
 				style="float: left; opacity: 0.9; z-index: 1">
 				<button class="button button-primary button-large"
-					style="border-radius: 15px 0px 0px 0px;" >
-					 功能
-				</button>
+					style="border-radius: 15px 0px 0px 0px;">功能</button>
 				<ul class="button-dropdown-list is-below">
 					<li><a id="function1"> 在线人数</a></li>
 					<li><a href="">Option Link 2</a></li>
-					<li class="button-dropdown-divider"><a href="">Option Link 3</a></li>
+					<li class="button-dropdown-divider"><a href="">Option Link
+							3</a></li>
 				</ul>
-			</span> 
-			</header>
-				
-			
-			<div id="showmsg">
+			</span> </header>
 
-			</div>
+
+			<div id="showmsg"></div>
 			<footer>
 			<div id="sendmsg" class="div_footer">
 				<textarea id="msg" class="msgtextarea"></textarea>
@@ -55,14 +52,14 @@
 					style="float: right">发送</button>
 			</div>
 			</footer>
-	<div class="theme-popover">
-			<div class="theme-poptit">
-				<a  style="float:right;font-size:30px;"  title="关闭" class="close">×</a>
-				<h2 >功能</h2>
+			<div class="theme-popover">
+				<div class="theme-poptit">
+					<a style="float: right; font-size: 30px;" title="关闭" class="close">×</a>
+					<h2>功能</h2>
+				</div>
+				<div id="main_function"></div>
 			</div>
-	<div id="main_function">
-	</div>
-	</div>
+		</div>
 	</div>
 </body>
 </html>
