@@ -13,9 +13,8 @@
 <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/buttons.js"></script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-	
-</script>
+
+
 <!-- 只有使用字体图标时才需要加载 Font-Awesome -->
 <link
 	href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css"
@@ -24,6 +23,7 @@
 <body id="body" onload="connection();loadhis();"
 	onunload="unconnection();">
 	<div class="bg">
+	
 		<div class="main_div">
 
 			<!-- 先写这么多功能，万一用到了呢 -->
@@ -35,14 +35,13 @@
 					style="border-radius: 15px 0px 0px 0px;">功能</button>
 				<ul class="button-dropdown-list is-below">
 					<li><a id="function1"> 在线人数</a></li>
-					<li><a href="">Option Link 2</a></li>
-					<li class="button-dropdown-divider"><a href="">Option Link
-							3</a></li>
+					<li><a id="function2">搜索消息纪录</a></li>
 				</ul>
 			</span> </header>
 
 
-			<div id="showmsg"></div>
+			<div id="showmsg">
+			</div>
 			<footer>
 			<div id="sendmsg" class="div_footer">
 				<textarea id="msg" class="msgtextarea"></textarea>

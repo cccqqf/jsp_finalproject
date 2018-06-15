@@ -16,7 +16,7 @@
 		if(application.getAttribute("femaleCount")!=null){
 			femalecount=(int)application.getAttribute("femaleCount");
 		}
-	%>
+	%><h2>在线人数<%=malecount+femalecount %>人</h2>
 	<div id="container" style="color: #fff"></div>
 	
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>

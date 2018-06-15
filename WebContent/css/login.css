@@ -7,7 +7,7 @@ body { background:#93defe; background-size: cover; }
 a { color:#27A9E3; text-decoration:none; cursor:pointer; }
 img{ border:none;}
 
-.login_box{ width:1100px; margin:120px auto 0;}
+.login_box{ width:500px; margin:250px auto ;}
 .login_box .login_l_img{ float:left; width:432px; height:440px; margin-left:50px;}
 .login_box .login_l_img img{width:500px; height:440px; }
 

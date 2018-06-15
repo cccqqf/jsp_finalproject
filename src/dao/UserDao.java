@@ -6,8 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import bean.User;
+import bean.forbidbean;
 
 public class UserDao {
 	public boolean create(User user) {
@@ -53,4 +57,72 @@ public class UserDao {
 		return user;
 		
 	}
+	
+	public forbidbean queryforbid(String name) {
+		Connection conn=DButil.getConnection();
+		PreparedStatement pstmt=null;
+		String sql="SELECT * FROM forbiddenlist WHERE name=?";
+		ResultSet rs=null;
+		forbidbean forbid=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				 String datestr=rs.getString(3);
+				 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				 
+				 try {
+					forbid=new forbidbean(rs.getString(2),sdf.parse(datestr));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DButil.closeJDBC(null, pstmt, conn);
+		}
+		return forbid;
+		
+	}
+	
+	public boolean addForbidden(String name) {
+		Connection conn=DButil.getConnection();
+		PreparedStatement pstmt=null;
+		String sql="INSERT INTO forbiddenlist (name) VALUES(?)";
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DButil.closeJDBC(null, pstmt, conn);
+		}
+		return result==1;
+		
+	}
+	public boolean removeForbidden(String name) {
+		Connection conn=DButil.getConnection();
+		PreparedStatement pstmt=null;
+		String sql="DELETE FROM forbiddenlist WHERE name=?";
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DButil.closeJDBC(null, pstmt, conn);
+		}
+		return result==1;
+	}
+	
 }

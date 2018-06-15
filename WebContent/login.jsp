@@ -15,9 +15,6 @@
 <body>
 	<!-- 登录 -->
 	<div class="login_box">
-		<div class="login_l_img">
-			<img src="./images/login-img.png" />
-		</div>
 		<div class="login">
 			<div class="login_logo">
 				<a href="#"><img src="images/login_logo.png" /></a>
@@ -29,7 +26,7 @@
 				<input name="username" type="text" id="username " placeholder="用户名"> 
 				<input name="password" type="password" id="password"  placeholder="密码"/>
 				<input value="登录" style="width: 100%;" type="submit"> <br />
-				<br /> <a id="register" style="float: right;" href="javascript:;">注册账号</a>
+				
 			</form>
 		</div>
 		

@@ -61,7 +61,7 @@ public class loadhis extends HttpServlet {
 			if(messagename.equals(name)) {
 				out.print("<div style=\"text-align:right\"><div id=\"box_right\">"+message.getSay()+"</div>"+message.getName()+"</div>");
 			}else {
-				out.print("<div>"+message.getName()+"<div id=\"box_left\">"+message.getSay()+"</div></div>");
+				out.print("<div><a  onclick=\"showdiv(this.name)\" id=\"forbid\" name=\""+message.getName()+"\">"+message.getName()+"</a><div id=\"box_left\">"+message.getSay()+"</div></div>");
 			}
 		}
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

@@ -6,7 +6,11 @@ jQuery(document).ready(function() {
 				url:'sendmsg',
 				data:'msg='+$("#msg").val(),
 				success:function(msg){
-					document.getElementById("msg").value="";
+					document.getElementById("msg").value=""
+					if(msg!=""){
+						alert(msg);
+					}
+					
 				}
 				})
 			}
@@ -21,10 +25,27 @@ jQuery(document).ready(function() {
 			$('.theme-popover').slideUp(200);
 		})
 		
+		$("#function2").click(function(){
+			$('.theme-popover').slideDown(200);
+			$("#main_function").load("search.jsp")
+		})
+		
 		
 })
 		
-		
+function showdiv(name){
+	var r=confirm("是否禁言此用户!");
+	if (r==true){
+		$.ajax({
+			type:'post',
+			url:'forbiduser',
+			data:'name='+name,
+			success:function(msg){
+				alert(msg);
+			}
+		})
+	}
+}
 		
 		
 function connection(){
@@ -62,4 +83,8 @@ function unconnection(){
 		}
 	})
 }  
+
+
+
+
 

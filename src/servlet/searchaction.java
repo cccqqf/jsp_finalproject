@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.User;
-import dao.UserDao;
+import bean.Message;
+import dao.SearchDao;
 
 /**
- * Servlet implementation class registerAction
+ * Servlet implementation class searchaction
  */
-@WebServlet("/registerAction")
-public class registerAction extends HttpServlet {
+@WebServlet("/searchaction")
+public class searchaction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registerAction() {
+    public searchaction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,28 +46,17 @@ public class registerAction extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
 		
-		PrintWriter out = response.getWriter();
-		
-		String name=request.getParameter("regname");
-		String username=request.getParameter("regusername");
-		String password=request.getParameter("regpassword");
-		String sex=request.getParameter("sex");
-		
-		UserDao userDao=new UserDao();
-		User isregister=userDao.query(username);
-		if(isregister!=null) {
-			out.println("<script>alert('用户名已存在');location='login.jsp';</script>");
-		}else {
-			if(sex.equals("choose")) {
-				out.println("<script>alert('请选择性别');location='login.jsp';</script>");
-			}else {
-				User user=new User(name,username,password,sex);
-				boolean result = userDao.create(user);
-				if(result==true) {
-					out.println("<script>alert('注册成功');location='login.jsp';</script>");
-				}
-			}
+		String submessage=(String)request.getParameter("content");
+		Queue<Message> msgqueue=new LinkedList<Message>();
+		Message message=new Message();
+		SearchDao searchDao=new SearchDao();
+		searchDao.Search(msgqueue, submessage);
+		while(!(msgqueue.isEmpty())) {
+			message=msgqueue.poll();
+			out.print("<div style=\"text-align:right;margin:20px\"><div id=\"box_right\">"+message.getSay()+"</div>"+message.getName()+"</div>");
 		}
 		out.flush();
 		out.close();

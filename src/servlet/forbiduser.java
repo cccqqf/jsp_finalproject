@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.User;
 import dao.UserDao;
 
 /**
- * Servlet implementation class registerAction
+ * Servlet implementation class forbiduser
  */
-@WebServlet("/registerAction")
-public class registerAction extends HttpServlet {
+@WebServlet("/forbiduser")
+public class forbiduser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registerAction() {
+    public forbiduser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,31 +40,23 @@ public class registerAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
 		
-		PrintWriter out = response.getWriter();
-		
-		String name=request.getParameter("regname");
-		String username=request.getParameter("regusername");
-		String password=request.getParameter("regpassword");
-		String sex=request.getParameter("sex");
-		
-		UserDao userDao=new UserDao();
-		User isregister=userDao.query(username);
-		if(isregister!=null) {
-			out.println("<script>alert('用户名已存在');location='login.jsp';</script>");
-		}else {
-			if(sex.equals("choose")) {
-				out.println("<script>alert('请选择性别');location='login.jsp';</script>");
-			}else {
-				User user=new User(name,username,password,sex);
-				boolean result = userDao.create(user);
-				if(result==true) {
-					out.println("<script>alert('注册成功');location='login.jsp';</script>");
-				}
+		String thisname=(String)request.getSession().getAttribute("name");
+		String name=request.getParameter("name");
+		if(thisname.equals("崔奇峰")) {
+			//可以
+			UserDao userDao=new UserDao();
+			boolean result=userDao.addForbidden(name);
+			if(result==true) {
+				out.print("已成功禁言");
 			}
+		}else {
+			//不是管理员
+			out.print("您不是管理员");
 		}
 		out.flush();
 		out.close();

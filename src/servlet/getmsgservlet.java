@@ -68,7 +68,7 @@ public class getmsgservlet extends HttpServlet {
 		if(msg.getName()==name) {
 			out.print("<div style=\"text-align:right\"><div id=\"box_right\">"+msg.getSay()+"</div>"+msg.getName()+"</div>");
 		}else {
-			out.print("<div>"+msg.getName()+"<div id=\"box_left\">"+msg.getSay()+"</div></div>");
+			out.print("<div><a onclick=\"showdiv()\" id=\"forbid\" name=\""+msg.getName()+"\">"+msg.getName()+"</a><div id=\"box_left\">"+msg.getSay()+"</div></div>");
 		}
 		out.flush();
 		out.close();
